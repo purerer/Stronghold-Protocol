@@ -53,6 +53,7 @@ import { ScreenFitSection } from './screenFit.js';
 import { askPersistStorage, importSupport, storagePersisted } from '../assetCache.js';
 import { assetImport, pruneImportedAssets } from '../assetPack.js';
 import { cosmetics } from '../cosmetics.js';
+import { gamepadStatus } from './gamepad.js';
 
 const cx = (...p) => p.flat().filter(Boolean).join(' ');
 
@@ -115,6 +116,26 @@ function Toggle({ label, micro, value, onChange }) {
     <button type="button" class=${`set-toggle${value ? ' is-on' : ''}`} role="switch" aria-checked=${value ? 'true' : 'false'}
       onClick=${() => onChange(!value)}><i></i><span>${value ? tc('toggle', '开启') : tc('toggle', '关闭')}</span></button>
   </div>`;
+}
+
+function GamepadSection({ enabled }) {
+  const pad = useStore((s) => s, Object.is, gamepadStatus);
+  const message = pad.state === 'connected' ? t('手柄已连接：{name}', { name: pad.name })
+    : pad.state === 'nonstandard' ? t('此手柄未提供标准按键映射，请切换到标准手柄模式。')
+      : pad.state === 'blocked' ? t('浏览器禁止了手柄访问，请检查站点权限。')
+        : pad.state === 'unsupported' ? t('当前页面无法读取手柄，请使用支持手柄的浏览器并通过 HTTPS 或 localhost 访问。')
+          : t('连接 Xbox / PlayStation 手柄后按任意键，再松开所有按键。');
+  return html`<section class="set-gamepad" aria-label=${t('手柄控制')}>
+    <${Toggle} label=${t('手柄控制')} micro="GAMEPAD" value=${enabled} onChange=${(v) => updateSettings({ gamepadEnabled: v })} />
+    <p class="set-hint" role="status">${enabled ? message : t('手柄控制已关闭')}</p>
+    <details class="set-gamepad-help set-hint"><summary>${t('查看手柄操作')}</summary>
+      <p>${t('左摇杆移动光标；按住 A / × 拖拽，松开落下；B / ○ 取消。')}</p>
+      <p>${t('选择朝向时用方向键或左摇杆预览，A / × 确认。')}</p>
+      <p>${t('X / □ 刷新；Y / △ 购买光标处商品；LB / L1 冻结；RB / R1 升级；Start / Options 准备或暂停。')}</p>
+      <p>${t('LT / L2 慢速移动；RT / R2 查看详情；右摇杆滚动光标下的面板。')}</p>
+      <p>${t('输入名字或房间码请用键盘；首次播放声音或进入全屏可能需要鼠标点击。')}</p>
+    </details>
+  </section>`;
 }
 
 /** Display order only: 低 / 中 / 高, the same direction as 官方特效 关 / 精简 / 完整. Stored values stay high | medium | low. */
@@ -530,6 +551,7 @@ export function SettingsModal({ open, onClose }) {
       <p class="set-hint set-textsize-note">${t('调整界面文字大小，棋盘保持原比例。')}</p>
       <${ScreenFitSection} />
       <${HotkeySection} keys=${s.keys} touchUi=${touchUi} />
+      <${GamepadSection} enabled=${s.gamepadEnabled} />
       <${CosmeticSection} />
       <${UiPluginSection} />
       <${StorageSection} />

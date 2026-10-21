@@ -2188,5 +2188,18 @@
   "删除这台浏览器里、当前服务器版本已经用不到的导入素材；仍在使用的会保留。": "Delete the imported assets in this browser that this server's current version no longer uses; the ones still in use stay.",
   "已清理 {n} 个旧版本文件。": "Cleared {n} old-version files.",
   "没有需要清理的旧版本文件。": "No old-version files to clear.",
-  "读不到服务器的素材清单，没有删除任何文件。": "Could not read the server's asset lists; nothing was deleted."
+  "读不到服务器的素材清单，没有删除任何文件。": "Could not read the server's asset lists; nothing was deleted.",
+  "手柄控制": "Gamepad controls",
+  "手柄已连接：{name}": "Gamepad connected: {name}",
+  "此手柄未提供标准按键映射，请切换到标准手柄模式。": "This controller has no standard mapping. Switch it to standard gamepad mode.",
+  "浏览器禁止了手柄访问，请检查站点权限。": "Gamepad access is blocked by the browser. Check site permissions.",
+  "当前页面无法读取手柄，请使用支持手柄的浏览器并通过 HTTPS 或 localhost 访问。": "Gamepad access is unavailable. Use a compatible browser over HTTPS or localhost.",
+  "连接 Xbox / PlayStation 手柄后按任意键，再松开所有按键。": "Connect an Xbox / PlayStation controller, press a button, then release all buttons.",
+  "手柄控制已关闭": "Gamepad controls are off",
+  "查看手柄操作": "Show gamepad controls",
+  "左摇杆移动光标；按住 A / × 拖拽，松开落下；B / ○ 取消。": "Left stick moves the cursor; hold A / Cross to drag, release to drop; B / Circle cancels.",
+  "选择朝向时用方向键或左摇杆预览，A / × 确认。": "When choosing facing, preview with the D-pad or left stick, then confirm with A / Cross.",
+  "X / □ 刷新；Y / △ 购买光标处商品；LB / L1 冻结；RB / R1 升级；Start / Options 准备或暂停。": "X / Square refreshes; Y / Triangle buys the hovered offer; LB / L1 freezes; RB / R1 levels up; Start / Options readies or pauses.",
+  "LT / L2 慢速移动；RT / R2 查看详情；右摇杆滚动光标下的面板。": "Hold LT / L2 for precision; RT / R2 shows details; right stick scrolls the panel under the cursor.",
+  "输入名字或房间码请用键盘；首次播放声音或进入全屏可能需要鼠标点击。": "Use the keyboard for names and room codes. Audio and fullscreen may require a real mouse click first."
 }

@@ -1,0 +1,23 @@
+/* Never intercept hit-testing or move the real OS mouse cursor. */
+.gamepad-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #8effe0;
+  border-radius: 50%;
+  background: #061d1899;
+  box-shadow: 0 0 0 1px #061d18, 0 0 12px #8effe080;
+  pointer-events: none;
+  z-index: 2147483647;
+  will-change: transform;
+}
+.gamepad-cursor[hidden] { display: none; }
+.gamepad-cursor::after { content: ''; position: absolute; inset: 6px; border-radius: 50%; background: #fff; }
+.gamepad-cursor.is-pressed { border-color: #ffcb6b; background: #ffcb6b66; }
+[data-gamepad-hover] { outline: 2px solid #8effe0; outline-offset: 2px; }
+.set-gamepad-help { display: grid; gap: 0.08rem; }
+.set-gamepad-help p { margin: 0; }
+.set-gamepad .set-hint { overflow-wrap: anywhere; }
