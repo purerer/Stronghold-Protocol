@@ -3,7 +3,7 @@
 // Synthetic pointers cannot use browser capture: retain the press target until release/cancellation.
 // Disconnect, blur, real pointer input and disabling cancel a drag rather than committing it.
 import { createStore } from '../store.js';
-import { hotkeyLabel } from './gameLogic/shortcuts.js';
+import { keyValueForCode } from './gameLogic/shortcuts.js';
 
 export const gamepadStatus = createStore({ state: 'waiting', name: '' });
 
@@ -131,9 +131,8 @@ export function installGamepad({ settings, win = window }) {
     if (!held.moved && held.target.isConnected && over && (over === held.target || held.target.contains(over))) mouse(held.target, 'click');
     if (held.range?.isConnected) held.range.dispatchEvent(new win.Event('change', { bubbles: true }));
   }
-  function key(code, keyValue) {
-    const label = hotkeyLabel(code);
-    const value = keyValue ?? (code === 'Space' ? ' ' : label.length === 1 ? label.toLowerCase() : label || code);
+  function key(code) {
+    const value = keyValueForCode(code);
     const target = doc.activeElement ?? doc.body;
     for (const type of ['keydown', 'keyup']) target.dispatchEvent(new win.KeyboardEvent(type, { key: value, code, bubbles: true, cancelable: true }));
   }
