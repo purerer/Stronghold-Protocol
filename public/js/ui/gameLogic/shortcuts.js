@@ -25,6 +25,9 @@ const KEY_OF = new Map([
 ]);
 const CODE_OF = new Map([...KEY_OF].map(([code, key]) => [key, code]));
 
+/** KeyboardEvent.key for a saved shortcut code (US layout), or a fixed interface key such as Escape / Enter. */
+export const keyValueForCode = (code) => KEY_OF.get(code) ?? code;
+
 /** A key press's `key`, lower case when it is one character ('' when absent). */
 const keyValue = (e) => {
   const k = e?.key;

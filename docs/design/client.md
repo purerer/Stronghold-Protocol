@@ -671,3 +671,13 @@ keys override and missing/invalid entries retain built-in text. Scope remains br
 room content and simulation. Pure geometry SDK helpers return frozen values and accept at most 1024 range cells.
 Forge UI mounts without an equivalent slot require an explicit manual-adaptation report, separate from script copying.
 Art/audio templates ship original CC0 sample media; the studio fills the target's first editable slot [ASSUMED].
+
+## Fork: standard gamepad input
+
+`purerer/Stronghold-Protocol` adds optional browser-local Gamepad API input in `public/js/ui/gamepad.js`.
+[ASSUMED] Standard Xbox / PlayStation bindings use a virtual mouse and the existing rebindable shortcut map,
+with no protocol, match or simulation changes. Settings persist `gamepadEnabled` (default true) locally.
+Release, disconnect, focus loss, real-pointer takeover and disabling have distinct paths: only explicit A release
+commits a drag; the others cancel it. Resume requires neutral buttons. Unsupported or policy-blocked APIs and
+non-standard mapping are reported in settings; these conditions never prevent normal keyboard/mouse boot.
+Bindings, secure-context constraints and validation scope: [GAMEPAD.md](../GAMEPAD.md).

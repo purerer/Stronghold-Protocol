@@ -1,5 +1,8 @@
 # 卫戍协议：盟约 · Stronghold Protocol: Alliance
 
+> 此 fork 新增电脑浏览器手柄控制：左摇杆光标、A / × 点击与拖拽、方向选择、商店快捷操作。
+> 使用方法、按键表与 HTTPS / localhost 要求见 [手柄控制说明](docs/GAMEPAD.md)。此功能尚待实体手柄验证。
+
 《明日方舟》季节性自走棋塔防玩法「卫戍协议：盟约」的**非官方同人复刻**：浏览器即开即玩，单人或 1–4 人联机合作。
 
 ![version](https://img.shields.io/badge/version-0.3.1-2ea44f)

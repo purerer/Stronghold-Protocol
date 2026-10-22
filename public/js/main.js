@@ -49,6 +49,7 @@ import { RoomScreen, TrustedNotice } from './screens/room.js';
 import { GameScreen } from './screens/game.js';
 import { audio, installAudio } from './audio.js';
 import { settingsStore } from './ui/settings.js';
+import { installGamepad } from './ui/gamepad.js';
 import { GuideHost } from './ui/guide.js';
 import { installDeviceSupport } from './ui/device.js';
 import { registerImportedAssetWorker } from './assetCache.js';
@@ -432,6 +433,8 @@ async function boot() {
   await Promise.all([waitForFonts(1200), connectWhenReady, langReady]);
   const root = document.getElementById('app');
   render(html`<${App} />`, root);
+  const stopGamepad = installGamepad({ settings: settingsStore });
+  window.addEventListener('pagehide', stopGamepad, { once: true });
 
   const splash = document.getElementById('boot');
   if (splash) {
